@@ -48,11 +48,15 @@ document.querySelectorAll(
   });
 });
 
-// ── Real-time age warning ───────────────────────────────────────
+// ── Real-time age check ─────────────────────────────────────────
+// Si seleccionan "menos de 65", mostramos el resultado de inmediato.
 document.querySelectorAll('input[name="age65"]').forEach(radio => {
   radio.addEventListener('change', (e) => {
-    const warning = document.getElementById('age-warning');
-    if (warning) warning.hidden = /** @type {HTMLInputElement} */ (e.target).value !== 'no';
+    const val = /** @type {HTMLInputElement} */ (e.target).value;
+    if (val === 'no') {
+      pushEvent('eligible_status', { status: 'no_eligible_age' });
+      showStep('result-age-ineligible');
+    }
   });
 });
 
