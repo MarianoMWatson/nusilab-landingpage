@@ -1,0 +1,194 @@
+---
+const steps = [
+  {
+    n:    '01',
+    text: 'Haga clic en <strong>«QUIERO PARTICIPAR»</strong> para comenzar el cuestionario de preselección.',
+  },
+  {
+    n:    '02',
+    text: 'Responda unas pocas preguntas sobre su edad, salud y disponibilidad. Dura menos de 5 minutos.',
+  },
+  {
+    n:    '03',
+    text: 'Recibirá un resultado inmediato indicando si podría calificar para el estudio.',
+  },
+  {
+    n:    '04',
+    text: 'Si califica, un coordinador del centro más cercano lo llamará para agendar su primera visita.',
+  },
+  {
+    n:    '05',
+    text: 'Asista a la visita de selección en el centro. <strong>Sin costo</strong> y con apoyo para el traslado si es necesario.',
+  },
+];
+---
+<section class="section" id="que-puede-hacer-ahora" aria-labelledby="nextsteps-h2">
+  <div class="container container-md">
+
+    <div class="ns-header" data-reveal>
+      <p class="overline">
+        <span class="overline-rule" aria-hidden="true"></span>
+        <span>Próximos pasos</span>
+      </p>
+      <h2 id="nextsteps-h2">¿Cómo empiezo?</h2>
+    </div>
+
+    <ol class="ns-steps" aria-label="Pasos para inscribirse">
+      {steps.map(s => (
+        <li class="ns-step" data-reveal>
+          <span class="ns-n" aria-hidden="true">{s.n}</span>
+          <p class="ns-text" set:html={s.text} />
+        </li>
+      ))}
+    </ol>
+
+    <!-- CTA row -->
+    <div class="ns-cta-row" data-reveal>
+      <a href="#" class="btn-cta ns-cta-btn" id="nextsteps-cta-btn" aria-label="Quiero participar en el estudio">
+        QUIERO PARTICIPAR
+      </a>
+      <div class="ns-footnotes">
+        <p>Sin costo médico &nbsp;·&nbsp; Puede retirarse en cualquier momento</p>
+        <p>
+          <span class="badge-tech" aria-label="RENIS IS00-666">RENIS IS00-666</span>
+          &nbsp; Estudio registrado ante ANMAT
+        </p>
+      </div>
+    </div>
+
+    <!-- Travel support block -->
+    <aside class="travel-block" data-reveal aria-label="Apoyo para traslados">
+      <div class="travel-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+      </div>
+      <div class="travel-content">
+        <h4>Apoyo para viajes y comidas</h4>
+        <p>
+          Si la visita al centro del estudio implica un viaje significativo,
+          el equipo puede ayudarle con el transporte y los gastos de comida.
+          Consulte a su coordinador local para más detalles.
+        </p>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<style>
+  .ns-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  /* ── Steps ─────────────────────────────────────────────── */
+  .ns-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: var(--sp-12);
+    border-top: 1px solid var(--border);
+  }
+
+  .ns-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--sp-4);
+    align-items: baseline;
+    padding-block: var(--sp-5);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--t-fast);
+  }
+
+  .ns-step:hover { background: var(--bg-surface); }
+
+  .ns-n {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 300;
+    color: var(--accent-2);
+    letter-spacing: -0.02em;
+  }
+
+  .ns-text {
+    font-size: var(--text-base);
+    color: var(--text-2);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+  .ns-text strong { color: var(--text-1); }
+
+  /* ── CTA row ───────────────────────────────────────────── */
+  .ns-cta-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-5);
+    margin-bottom: var(--sp-10);
+  }
+
+  .ns-cta-btn { max-width: 320px; }
+
+  .ns-footnotes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .ns-footnotes p {
+    font-size: var(--text-xs);
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 640px) {
+    .ns-cta-row {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  /* ── Travel block ──────────────────────────────────────── */
+  .travel-block {
+    display: flex;
+    gap: var(--sp-5);
+    padding: var(--sp-6);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--border-brand);
+    border-radius: var(--r-md);
+    align-items: flex-start;
+  }
+
+  .travel-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-sm);
+    background: var(--brand-dim);
+    border: 1px solid var(--border-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand);
+  }
+
+  .travel-content h4 {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: var(--sp-2);
+  }
+
+  .travel-content p {
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+</style>

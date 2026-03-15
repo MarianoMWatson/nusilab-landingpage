@@ -1,0 +1,213 @@
+---
+const navItems = [
+  { href: '/#detalles-del-estudio',      label: 'EL ESTUDIO' },
+  { href: '/#criterios-de-elegibilidad', label: 'ELEGIBILIDAD' },
+  { href: '/#que-pasara-en-este-estudio',label: 'EL PROCESO' },
+  { href: '/#que-puede-hacer-ahora',     label: 'COMIENZO' },
+  { href: '/#donde-puede-participar',    label: 'DÓNDE' },
+  { href: '/#preguntas-frecuentes',      label: 'PREGUNTAS FRECUENTES' },
+];
+---
+
+<header class="site-header" id="site-header">
+  <nav class="nav-inner container" aria-label="Navegación principal">
+
+    <a href="/" class="site-logo" aria-label="Nusilab — inicio">
+      <img src="/assets/logo.svg" alt="Nusilab" width="120" height="34" loading="eager"/>
+    </a>
+
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links" role="list">
+        {navItems.map(item => (
+          <li>
+            <a href={item.href} class="nav-link">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <a href="#" class="btn-cta nav-cta" id="nav-cta-btn" aria-label="Quiero participar en el estudio">
+      QUIERO PARTICIPAR
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Abrir menú de navegación"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12, 10, 20, 0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    height: var(--nav-h);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    height: 100%;
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    color: var(--text-1);
+  }
+  .site-logo img { height: 32px; width: auto; }
+
+  /* ── Mobile menu ── */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--r-sm);
+    transition: background var(--t-fast);
+  }
+  .nav-toggle:hover { background: var(--brand-dim); }
+
+  .bar {
+    display: block;
+    height: 1.5px;
+    width: 22px;
+    background: var(--text-2);
+    border-radius: 2px;
+    transition: transform var(--t-base) var(--ease-smooth), opacity var(--t-base);
+  }
+
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: var(--sp-4) var(--sp-5) var(--sp-6);
+  }
+  .nav-menu.open { display: block; }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 10px var(--sp-4);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--r-sm);
+    transition: color var(--t-fast), background var(--t-fast);
+  }
+  .nav-link:hover { color: var(--text-1); background: var(--brand-dim); opacity: 1; }
+  .nav-link.active { color: var(--accent); }
+
+  .nav-cta {
+    font-size: 14px;
+    padding: 10px 20px;
+    min-height: 40px;
+    flex-shrink: 0;
+    /* visible on mobile, pushed to right of CTA by flex order */
+    order: 2;
+  }
+
+  .nav-toggle { order: 3; }
+
+  /* ── Desktop ── */
+  @media (min-width: 1024px) {
+    .nav-toggle { display: none; }
+    .nav-cta { order: unset; }
+
+    .nav-menu {
+      display: block;
+      position: static;
+      background: none;
+      border: none;
+      padding: 0;
+      flex: 1;
+    }
+
+    .nav-links {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .nav-link { font-size: 11px; padding: 7px 11px; }
+
+    .nav-cta { font-size: 14px; padding: 10px 22px; }
+  }
+</style>
+
+<script>
+  const toggle  = document.getElementById('nav-toggle');
+  const menu    = document.getElementById('nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // Toggle mobile menu
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(!!open));
+  });
+
+  // Close on link click
+  navLinks.forEach(link => link.addEventListener('click', () => {
+    menu?.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Close on outside click
+  document.addEventListener('click', e => {
+    if (!menu?.contains(e.target as Node) && !toggle?.contains(e.target as Node)) {
+      menu?.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        const id = en.target.getAttribute('id');
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `/#${id}`));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>

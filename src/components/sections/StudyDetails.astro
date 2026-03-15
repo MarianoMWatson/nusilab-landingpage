@@ -1,0 +1,213 @@
+---
+---
+<section class="section section-surface" id="detalles-del-estudio" aria-labelledby="details-h2">
+  <div class="container">
+
+    <div class="details-grid">
+
+      <!-- Photo column -->
+      <div class="details-photo" aria-hidden="true">
+        <div class="photo-frame">
+          <img
+            src="/assets/photo-study.webp"
+            alt=""
+            width="800"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="photo-overlay" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Content column -->
+      <div class="details-content" data-reveal="stagger">
+
+        <p class="overline">
+          <span class="overline-rule" aria-hidden="true"></span>
+          <span>Detalles del estudio</span>
+        </p>
+
+        <h2 id="details-h2">
+          Una nueva vacuna contra la gripe, estudiada en más detalle
+        </h2>
+
+        <p class="details-lead">
+          El estudio NUSI-001 evalúa la seguridad y eficacia de una vacuna
+          investigacional contra la influenza en adultos mayores, comparándola
+          con vacunas aprobadas de uso habitual.
+        </p>
+
+        <div class="details-rows" role="list">
+
+          <div class="detail-row" role="listitem" data-reveal>
+            <div class="detail-row-label">Fase</div>
+            <div class="detail-row-value">
+              Fase 3 — la etapa final antes de la aprobación regulatoria.
+              Ya sabemos que la vacuna es segura; ahora confirmamos su eficacia.
+            </div>
+          </div>
+
+          <div class="detail-row" role="listitem" data-reveal>
+            <div class="detail-row-label">Producto</div>
+            <div class="detail-row-value">
+              Vacuna experimental contra la gripe (investigacional) comparada
+              con una vacuna contra la gripe de uso habitual, ya aprobada.
+            </div>
+          </div>
+
+          <div class="detail-row" role="listitem" data-reveal>
+            <div class="detail-row-label">Procedimiento</div>
+            <div class="detail-row-value">
+              Doble ciego aleatorizado: ni usted ni el médico sabrán qué
+              vacuna recibió durante el estudio.
+            </div>
+          </div>
+
+          <div class="detail-row" role="listitem" data-reveal>
+            <div class="detail-row-label">Alcance global</div>
+            <div class="detail-row-value">
+              Participantes en múltiples países. En Argentina: 9 centros
+              habilitados por ANMAT.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="details-badges" data-reveal>
+          <span class="badge-tech" aria-label="Autorizado por ANMAT">ANMAT</span>
+          <span class="badge-tech" aria-label="Comité de Ética independiente">CE</span>
+          <span class="badge-tech" aria-label="Registro RENIS IS00-666">RENIS IS00-666</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  /* ── Photo ─────────────────────────────────────────────── */
+  .details-photo { order: -1; }
+
+  .photo-frame {
+    position: relative;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--bg-card);
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75) saturate(0.8);
+  }
+
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(19,16,30,0.5) 0%,
+      rgba(19,16,30,0.15) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--border-mid);
+    border-radius: var(--r-lg);
+    min-height: 320px;
+  }
+
+  .photo-placeholder-label {
+    font-size: 12px;
+    color: var(--text-3);
+    text-align: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  /* ── Content ───────────────────────────────────────────── */
+  .details-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+
+  .details-lead {
+    font-size: clamp(var(--text-base), 2vw, var(--text-md));
+    color: var(--text-2);
+    line-height: var(--lh-tight);
+    margin: 0;
+  }
+
+  /* ── Rows ──────────────────────────────────────────────── */
+  .details-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--sp-4);
+    padding-block: var(--sp-5);
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+
+  .detail-row-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  .detail-row-value {
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    line-height: var(--lh-body);
+  }
+
+  /* ── Badges ────────────────────────────────────────────── */
+  .details-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  /* ── Desktop ───────────────────────────────────────────── */
+  @media (min-width: 1024px) {
+    .details-grid {
+      grid-template-columns: 5fr 7fr;
+      gap: var(--sp-20);
+      align-items: center;
+    }
+
+    .details-photo { order: 0; }
+
+    .photo-frame {
+      aspect-ratio: 4 / 5;
+    }
+  }
+</style>

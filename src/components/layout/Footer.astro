@@ -1,0 +1,110 @@
+---
+---
+<footer class="site-footer" aria-label="Pie de página">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="/" aria-label="Nusilab — inicio">
+          <img src="/assets/logo.svg" alt="Nusilab" width="108" height="30" class="footer-logo" loading="lazy"/>
+        </a>
+        <p class="footer-study">Estudio clínico NUSI-001 &nbsp;·&nbsp; Versión ARG</p>
+        <p class="footer-renis">RENIS: IS00-666</p>
+      </div>
+
+      <div class="footer-legal">
+        <p>© 2026 Nusilab Incorporated. All rights reserved.</p>
+        <p>
+          Este estudio está autorizado por <strong>ANMAT</strong>.
+          Para consultas regulatorias llame al
+          <a href="tel:08003331234">0800-333-1234</a> (gratuito).
+        </p>
+        <p>
+          Gestionado por <strong>Line Health</strong> &middot;
+          <a href="mailto:privacy@line.com">privacy@line.com</a>
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Vínculos legales">
+        <a href="/privacidad">Política de Privacidad</a>
+        <a href="/privacidad#terminos">Términos y Condiciones</a>
+        <button class="cookie-settings-btn" id="cookie-settings-btn" type="button">
+          Configuración de cookies
+        </button>
+        <span class="footer-wcag">Accesibilidad WCAG 2.1 AA</span>
+      </nav>
+
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #07060F;
+    border-top: 1px solid var(--border);
+    padding-block: var(--sp-16);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-10);
+  }
+
+  .footer-logo { opacity: 0.85; }
+  .footer-logo:hover { opacity: 1; }
+
+  .footer-brand { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+  .footer-study,
+  .footer-renis {
+    font-size: var(--text-xs);
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-legal p {
+    font-size: 13px;
+    color: var(--text-3);
+    line-height: 1.6;
+    margin-bottom: var(--sp-2);
+  }
+  .footer-legal a { color: var(--text-2); }
+  .footer-legal strong { color: var(--text-2); font-weight: 600; }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .footer-nav a,
+  .cookie-settings-btn {
+    font-size: 13px;
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color var(--t-fast);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    padding: 0;
+    text-align: left;
+  }
+  .footer-nav a:hover,
+  .cookie-settings-btn:hover { color: var(--text-2); opacity: 1; }
+
+  .footer-wcag {
+    font-size: 11px;
+    color: var(--text-3);
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 180px 1fr 180px;
+      align-items: start;
+      gap: var(--sp-16);
+    }
+  }
+</style>

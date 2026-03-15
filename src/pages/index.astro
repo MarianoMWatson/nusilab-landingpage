@@ -1,0 +1,38 @@
+---
+import Base          from '../layouts/Base.astro';
+import Header        from '../components/layout/Header.astro';
+import Footer        from '../components/layout/Footer.astro';
+import Hero          from '../components/sections/Hero.astro';
+import StudyDetails  from '../components/sections/StudyDetails.astro';
+import Eligibility   from '../components/sections/Eligibility.astro';
+import Process       from '../components/sections/Process.astro';
+import NextSteps     from '../components/sections/NextSteps.astro';
+import MapSection    from '../components/sections/MapSection.astro';
+import FAQ           from '../components/sections/FAQ.astro';
+import CookieBanner  from '../components/sections/CookieBanner.astro';
+import PrescreeningModal from '../components/PrescreeningModal.astro';
+import Chatbot           from '../components/Chatbot.astro';
+---
+
+<Base
+  title="Estudio NUSI-001 — Vacuna contra la gripe | Nusilab"
+  description="Inscripción abierta para adultos de 65 años o más. Estudio de investigación médica sobre una vacuna contra la gripe. Autorizado por ANMAT. Sin cobertura médica requerida."
+  canonical="https://nusi001.com/"
+>
+  <Header/>
+
+  <main id="main-content">
+    <Hero/>
+    <StudyDetails/>
+    <Eligibility/>
+    <Process/>
+    <NextSteps/>
+    <MapSection/>
+    <FAQ/>
+  </main>
+
+  <Footer/>
+  <CookieBanner/>
+  <PrescreeningModal/>
+  <Chatbot/>
+</Base>

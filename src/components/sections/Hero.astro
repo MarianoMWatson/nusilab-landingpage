@@ -1,0 +1,258 @@
+---
+---
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero-inner container">
+
+    <!-- Main content column -->
+    <div class="hero-content">
+
+      <p class="overline hero-overline" data-hero="overline">
+        <span class="overline-rule" aria-hidden="true"></span>
+        <span>NUSI-001 &nbsp;·&nbsp; ENSAYO CLÍNICO FASE 3 &nbsp;·&nbsp; ARGENTINA</span>
+      </p>
+
+      <h1 id="hero-h1" class="hero-heading" data-hero="heading">
+        Estudio de investigación médica sobre una vacuna contra la gripe
+      </h1>
+
+      <p class="hero-sub" data-hero="sub">
+        Inscripción abierta para personas de <strong>65 años o más</strong>
+      </p>
+
+      <div class="hero-cta-wrap" data-hero="cta">
+        <a href="#" class="btn-cta btn-cta-full" id="hero-cta-btn" aria-label="Quiero participar en el estudio">
+          QUIERO PARTICIPAR
+        </a>
+        <p class="hero-cta-note">Sin costo médico &nbsp;·&nbsp; Puede retirarse en cualquier momento</p>
+      </div>
+
+      <ul class="hero-trust" aria-label="Señales de confianza del estudio" data-hero="trust">
+        <li>
+          <span class="badge-tech" aria-label="Autorizado por ANMAT">ANMAT</span>
+          <span>Estudio autorizado</span>
+        </li>
+        <li>
+          <span class="badge-tech" aria-label="Aprobado por Comité de Ética">CE</span>
+          <span>Aprobado por Comité de Ética</span>
+        </li>
+        <li>
+          <span class="trust-dot" aria-hidden="true"></span>
+          <span>Sin obra social ni prepaga requerida</span>
+        </li>
+      </ul>
+
+    </div>
+
+    <!-- Stats strip (desktop: horizontal; mobile: 2x2 grid) -->
+    <div class="hero-stats" data-hero="stats" role="list" aria-label="Datos clave del estudio">
+      <div class="stat-item" role="listitem">
+        <span class="stat-val">Fase 3</span>
+        <span class="stat-lbl">Etapa del estudio</span>
+      </div>
+      <div class="stat-sep" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-val">840</span>
+        <span class="stat-lbl">Participantes</span>
+      </div>
+      <div class="stat-sep" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-val">~1 año</span>
+        <span class="stat-lbl">Duración estimada</span>
+      </div>
+      <div class="stat-sep" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-val">2–4</span>
+        <span class="stat-lbl">Visitas al centro</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Hero container ────────────────────────────────────── */
+  .hero {
+    min-height: calc(100svh - var(--nav-h));
+    display: flex;
+    align-items: center;
+    padding-block: var(--sp-10) var(--sp-10);
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,87,166,0.12) 0%, transparent 70%),
+      var(--bg-base);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-12);
+    width: 100%;
+  }
+
+  /* ── Content ───────────────────────────────────────────── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+  }
+
+  .hero-overline { margin-bottom: 0; }
+
+  .hero-heading {
+    /* Fraunces weight 300 — editorial, not corporate */
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    max-width: 14ch;
+  }
+
+  .hero-sub {
+    font-size: clamp(var(--text-base), 2vw, var(--text-md));
+    color: var(--text-2);
+    line-height: var(--lh-tight);
+    margin: 0;
+  }
+  .hero-sub strong { color: var(--text-1); font-weight: 600; }
+
+  /* ── CTA block ─────────────────────────────────────────── */
+  .hero-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    max-width: 420px;
+  }
+
+  .hero-cta-note {
+    font-size: var(--text-xs);
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  /* ── Trust strip ───────────────────────────────────────── */
+  .hero-trust {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding-top: var(--sp-2);
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-trust li {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    font-size: var(--text-sm);
+    color: var(--text-2);
+  }
+
+  .trust-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text-3);
+    flex-shrink: 0;
+  }
+
+  /* ── Stats strip ───────────────────────────────────────── */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+
+  .stat-sep { display: none; } /* visible only on desktop */
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--sp-5) var(--sp-6);
+    background: var(--bg-card);
+    transition: background var(--t-fast);
+  }
+
+  .stat-val {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(26px, 3.5vw, 36px);
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .stat-lbl {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Desktop ───────────────────────────────────────────── */
+  @media (min-width: 768px) {
+    .hero {
+      padding-block: var(--sp-24) var(--sp-20);
+    }
+
+    .hero-inner {
+      gap: var(--sp-16);
+    }
+
+    .hero-heading {
+      max-width: 16ch;
+    }
+
+    .hero-trust {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--sp-6);
+    }
+
+    .hero-stats {
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--border);
+    }
+
+    .stat-sep { display: none; }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--sp-20);
+    }
+
+    .hero-content { flex: 0 0 55%; }
+
+    .hero-stats {
+      flex: 1;
+      grid-template-columns: 1fr;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .stat-item { padding: var(--sp-6) var(--sp-8); }
+
+    .stat-item + .stat-item {
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-val { font-size: 40px; }
+  }
+</style>

@@ -1,0 +1,98 @@
+/* ============================================================
+   NUSILAB — DESIGN TOKENS V2 · DARK PREMIUM
+   Revisión: dirección visual "Clinical Gravitas"
+   ============================================================ */
+
+:root {
+
+  /* ── Backgrounds ─────────────────────────────────────── */
+  --bg-base:      #0C0A14;   /* near-black, purple undertone */
+  --bg-surface:   #13101E;   /* secondary surfaces */
+  --bg-card:      #1A1627;   /* card / elevated components */
+  --bg-elevated:  #221E30;   /* top-elevation (modal header, tooltips) */
+
+  /* ── Brand ───────────────────────────────────────────── */
+  --brand:        #6457A6;
+  --brand-dim:    rgba(100, 87, 166, 0.12);
+  --brand-mid:    rgba(100, 87, 166, 0.30);
+
+  /* ── Accent primary — cyan, CTA / key highlights ────── */
+  --accent:       #76E5FC;   /* contrast on --bg-base: 14:1 ✓ */
+  --accent-dim:   rgba(118, 229, 252, 0.08);
+  --accent-mid:   rgba(118, 229, 252, 0.20);
+  --accent-glow:  rgba(118, 229, 252, 0.30);
+
+  /* ── Accent secondary — periwinkle, wayfinding/numbers ─ */
+  --accent-2:     #9DACFF;   /* contrast on --bg-base: ~8:1 ✓ */
+  --accent-2-dim: rgba(157, 172, 255, 0.08);
+  --accent-2-mid: rgba(157, 172, 255, 0.22);
+
+  --teal:         #4BC0D9;
+  --deep:         #5C2751;
+
+  /* ── Text ────────────────────────────────────────────── */
+  --text-1:       #F0EDF8;   /* primary    — 17.7:1 on --bg-base ✓ */
+  --text-2:       #C0BCD0;   /* secondary  — legible on dark bg    */
+  --text-3:       #9E98BA;   /* muted/meta —  7.5:1 on --bg-base  */
+
+  /* ── Borders ─────────────────────────────────────────── */
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-mid:   rgba(255, 255, 255, 0.12);
+  --border-accent:rgba(118, 229, 252, 0.22);
+  --border-brand: rgba(100,  87, 166, 0.30);
+
+  /* ── CTA button (most important contrast pair) ───────── */
+  /* --accent (#76E5FC) bg + --bg-base (#0C0A14) text = 14:1 */
+
+  /* ── Typography ──────────────────────────────────────── */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-ui:      'Inter', system-ui, -apple-system, sans-serif;
+
+  --text-xs:    14px;   /* era 13 — subido para adultos mayores */
+  --text-sm:    16px;   /* era 15 */
+  --text-base:  19px;   /* era 17 — cuerpo principal */
+  --text-md:    22px;   /* era 20 */
+  --text-lg:    26px;   /* era 24 */
+  --text-xl:    32px;
+  --text-2xl:   44px;
+  --text-hero:  clamp(40px, 6.5vw, 76px);
+
+  --lh-display: 1.12;
+  --lh-body:    1.65;
+  --lh-tight:   1.28;
+
+  /* ── Spacing (8px grid) ──────────────────────────────── */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   20px;
+  --sp-6:   24px;
+  --sp-8:   32px;
+  --sp-10:  40px;
+  --sp-12:  48px;
+  --sp-16:  64px;
+  --sp-20:  80px;
+  --sp-24:  96px;
+  --sp-32: 128px;
+
+  /* ── Layout ──────────────────────────────────────────── */
+  --container:    1200px;
+  --container-md:  840px;
+  --container-sm:  600px;
+  --nav-h:          72px;
+
+  /* ── Radius ──────────────────────────────────────────── */
+  --r-xs:  3px;
+  --r-sm:  6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* ── Easing ──────────────────────────────────────────── */
+  --ease-out:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-smooth: cubic-bezier(0.645, 0.045, 0.355, 1.00);
+  --t-fast:  150ms;
+  --t-base:  250ms;
+  --t-slow:  400ms;
+}

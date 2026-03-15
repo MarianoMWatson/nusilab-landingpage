@@ -1,0 +1,338 @@
+---
+---
+
+<!-- ── Floating chatbot button ── -->
+<button
+  class="chat-fab"
+  id="chat-fab"
+  aria-label="Abrir asistente virtual"
+  aria-expanded="false"
+>
+  <span class="chat-fab-icon" id="chat-fab-icon-open" aria-hidden="true">
+    <!-- Robot / android icon -->
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="8" width="18" height="13" rx="2"/>
+      <circle cx="9"  cy="14" r="1.5" fill="currentColor" stroke="none"/>
+      <circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M9 18h6"/>
+      <path d="M12 3v5"/>
+      <circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/>
+      <path d="M3 13H1M23 13h-2"/>
+    </svg>
+  </span>
+  <span class="chat-fab-icon" id="chat-fab-icon-close" style="display:none" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M5 5l10 10M15 5L5 15"/>
+    </svg>
+  </span>
+  <span class="chat-fab-badge" id="chat-fab-badge" aria-label="1 mensaje nuevo">1</span>
+</button>
+
+<!-- ── Chat window ── -->
+<div class="chat-window" id="chat-window" style="display:none" role="dialog" aria-label="Asistente virtual NUSI-001">
+
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="13" rx="2"/>
+          <circle cx="9"  cy="14" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none"/>
+          <path d="M9 18h6"/>
+          <path d="M12 3v5"/>
+          <circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div>
+        <p class="chat-bot-name">Asistente NUSI-001</p>
+        <p class="chat-bot-status">
+          <span class="chat-status-dot" aria-hidden="true"></span>
+          Sin conexión
+        </p>
+      </div>
+    </div>
+    <button class="chat-close-btn" id="chat-close-btn" type="button" aria-label="Cerrar chat">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M5 5l10 10M15 5L5 15"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+
+  <!-- Input -->
+  <form class="chat-input-row" id="chat-form" novalidate>
+    <input
+      class="chat-input"
+      id="chat-input"
+      type="text"
+      placeholder="Escriba su mensaje…"
+      autocomplete="off"
+      aria-label="Escribir mensaje"
+      maxlength="300"
+    />
+    <button type="submit" class="chat-send-btn" aria-label="Enviar mensaje">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+      </svg>
+    </button>
+  </form>
+
+</div>
+
+<script is:inline>
+(function () {
+  var fab        = document.getElementById('chat-fab');
+  var chatWin    = document.getElementById('chat-window');
+  var closeBtn   = document.getElementById('chat-close-btn');
+  var form       = document.getElementById('chat-form');
+  var input      = document.getElementById('chat-input');
+  var messages   = document.getElementById('chat-messages');
+  var badge      = document.getElementById('chat-fab-badge');
+  var iconOpen   = document.getElementById('chat-fab-icon-open');
+  var iconClose  = document.getElementById('chat-fab-icon-close');
+  var isOpen     = false;
+
+  var OFFLINE = [
+    '⚠️ El asistente está desconectado. Para consultas llame al <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a> (gratuito).',
+    '🔌 Sin conexión al servidor. Estamos disponibles de lunes a viernes 9–18 h en el <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a>.',
+    '⚠️ No puedo procesar su consulta en este momento. Por favor intente al <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a>.',
+  ];
+  var replyIdx = 0;
+
+  // ── Seed initial bot messages ──
+  addMsg('Hola 👋 Soy el asistente virtual del estudio NUSI-001. Estoy aquí para responder sus preguntas.', 'bot');
+  addMsg('⚠️ <strong style="color:#f0edf8;">Atención:</strong> estoy desconectado del servidor. Para hablar con una persona llame al <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a> (gratuito).', 'bot', true);
+
+  function openChat() {
+    isOpen = true;
+    chatWin.style.display = 'flex';
+    fab.setAttribute('aria-expanded', 'true');
+    iconOpen.style.display = 'none';
+    iconClose.style.display = 'flex';
+    badge.style.display = 'none';
+    input.focus();
+  }
+
+  function closeChat() {
+    isOpen = false;
+    chatWin.style.display = 'none';
+    fab.setAttribute('aria-expanded', 'false');
+    iconOpen.style.display = 'flex';
+    iconClose.style.display = 'none';
+  }
+
+  fab.addEventListener('click', function () {
+    isOpen ? closeChat() : openChat();
+  });
+
+  closeBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeChat();
+  });
+
+  function addMsg(html, role, warn) {
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;flex-direction:column;gap:3px;max-width:85%;' +
+      (role === 'user' ? 'align-self:flex-end;align-items:flex-end;' : 'align-self:flex-start;align-items:flex-start;');
+
+    var bubble = document.createElement('div');
+    bubble.style.cssText = 'padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.55;font-family:Inter,system-ui,sans-serif;' +
+      (role === 'user'
+        ? 'background:#76E5FC;color:#0C0A14;border-bottom-right-radius:4px;'
+        : warn
+          ? 'background:rgba(251,191,36,0.05);color:#C0BCD0;border:1px solid rgba(251,191,36,0.2);border-bottom-left-radius:4px;'
+          : 'background:#221E30;color:#C0BCD0;border:1px solid rgba(255,255,255,0.07);border-bottom-left-radius:4px;');
+    bubble.innerHTML = html;
+
+    var time = document.createElement('span');
+    time.style.cssText = 'font-size:10px;color:#7B759E;font-family:Inter,system-ui,sans-serif;padding:0 4px;';
+    time.textContent = 'ahora';
+
+    wrap.appendChild(bubble);
+    wrap.appendChild(time);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function showTyping() {
+    var wrap = document.createElement('div');
+    wrap.id = 'chat-typing';
+    wrap.style.cssText = 'align-self:flex-start;';
+    wrap.innerHTML =
+      '<div style="display:flex;align-items:center;gap:5px;padding:12px 16px;background:#221E30;border:1px solid rgba(255,255,255,0.07);border-radius:16px;border-bottom-left-radius:4px;">' +
+        '<span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>' +
+      '</div>';
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeTyping() {
+    var t = document.getElementById('chat-typing');
+    if (t) t.remove();
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    addMsg(text, 'user');
+    input.value = '';
+    showTyping();
+    setTimeout(function () {
+      removeTyping();
+      addMsg(OFFLINE[replyIdx % OFFLINE.length], 'bot', true);
+      replyIdx++;
+    }, 1000 + Math.random() * 600);
+  });
+})();
+</script>
+
+<style is:global>
+  .chat-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-base);
+    box-shadow: 0 4px 20px rgba(118,229,252,0.35);
+    transition: transform 150ms, box-shadow 150ms;
+  }
+  .chat-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(118,229,252,0.5);
+  }
+  .chat-fab-icon { display:flex; align-items:center; justify-content:center; line-height:0; }
+
+  .chat-fab-badge {
+    position: absolute;
+    top: 4px; right: 4px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #f87171;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: Inter, system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--bg-base);
+  }
+
+  .chat-window {
+    position: fixed;
+    bottom: calc(24px + 56px + 12px);
+    right: 24px;
+    z-index: 199;
+    width: min(370px, calc(100vw - 32px));
+    height: min(500px, calc(100dvh - 160px));
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    flex-shrink: 0;
+  }
+  .chat-header-left { display:flex; align-items:center; gap:10px; }
+  .chat-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .chat-bot-name {
+    font-size: 13px; font-weight: 600; color: var(--text-1);
+    font-family: Inter, system-ui, sans-serif; margin: 0; line-height: 1.2;
+  }
+  .chat-bot-status {
+    font-size: 11px; color: var(--text-3);
+    font-family: Inter, system-ui, sans-serif; margin: 0;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .chat-status-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #6b7280; flex-shrink: 0;
+  }
+  .chat-close-btn {
+    width: 32px; height: 32px;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-3); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 150ms, background 150ms;
+  }
+  .chat-close-btn:hover { color: var(--text-1); background: var(--brand-dim); }
+
+  .chat-messages {
+    flex: 1; overflow-y: auto;
+    padding: 16px; display: flex;
+    flex-direction: column; gap: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.12) transparent;
+  }
+
+  .chat-input-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    background: var(--bg-elevated); flex-shrink: 0;
+  }
+  .chat-input {
+    flex: 1;
+    background: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 9px 16px;
+    color: var(--text-1);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 13px; outline: none;
+    transition: border-color 150ms;
+  }
+  .chat-input:focus { border-color: var(--accent); }
+  .chat-input::placeholder { color: var(--text-3); }
+  .chat-send-btn {
+    width: 34px; height: 34px; flex-shrink: 0;
+    border-radius: 50%; background: var(--accent);
+    border: none; cursor: pointer; color: var(--bg-base);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 150ms;
+  }
+  .chat-send-btn:hover { transform: scale(1.08); }
+
+  /* Typing dots */
+  .chat-dot {
+    display: inline-block;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--text-3);
+    animation: chat-bounce 1.2s infinite ease-in-out;
+  }
+  .chat-dot:nth-child(2) { animation-delay: 0.2s; }
+  .chat-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes chat-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30%           { transform: translateY(-6px); opacity: 1; }
+  }
+</style>

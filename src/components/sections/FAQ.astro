@@ -1,0 +1,266 @@
+---
+import { faqs } from '../../data/faqs.js';
+---
+<section class="section" id="preguntas-frecuentes" aria-labelledby="faq-h2">
+  <div class="container container-md">
+
+    <div class="faq-header" data-reveal>
+      <p class="overline">
+        <span class="overline-rule" aria-hidden="true"></span>
+        <span>Preguntas frecuentes</span>
+      </p>
+      <h2 id="faq-h2">Resolvemos sus dudas</h2>
+    </div>
+
+    <div class="faq-list" role="list">
+      {faqs.map((faq, i) => (
+        <div class="faq-item" role="listitem" data-reveal>
+          <h3>
+            <button
+              class="faq-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls={`faq-body-${faq.id}`}
+              id={`faq-btn-${faq.id}`}
+            >
+              <span class="faq-q">{faq.question}</span>
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <path d="M3 6l5 5 5-5"/>
+                </svg>
+              </span>
+            </button>
+          </h3>
+          <div
+            class="faq-panel"
+            id={`faq-body-${faq.id}`}
+            role="region"
+            aria-labelledby={`faq-btn-${faq.id}`}
+            hidden
+          >
+            <div class="faq-answer" set:html={faq.answer} />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <a href="tel:08003331234" class="faq-phone-card" data-reveal aria-label="Llamar al 0800-333-1234, línea gratuita">
+      <div class="faq-phone-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.4 2 2 0 0 1 3.92 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <div class="faq-phone-body">
+        <p class="faq-phone-label">¿Tiene otras preguntas?</p>
+        <p class="faq-phone-number">0800-333-1234</p>
+        <p class="faq-phone-note">Línea gratuita &nbsp;·&nbsp; Lunes a viernes 9–18 h</p>
+      </div>
+      <div class="faq-phone-arrow" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>('.faq-item');
+
+  items.forEach(item => {
+    const btn   = item.querySelector<HTMLButtonElement>('.faq-trigger')!;
+    const panel = item.querySelector<HTMLElement>('.faq-panel')!;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all others
+      items.forEach(other => {
+        if (other !== item) {
+          const ob = other.querySelector<HTMLButtonElement>('.faq-trigger')!;
+          const op = other.querySelector<HTMLElement>('.faq-panel')!;
+          ob.setAttribute('aria-expanded', 'false');
+          other.classList.remove('open');
+          op.hidden = true;
+        }
+      });
+
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      item.classList.toggle('open', !isOpen);
+      panel.hidden = isOpen;
+    });
+  });
+</script>
+
+<style>
+  .faq-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  /* ── List ──────────────────────────────────────────────── */
+  .faq-list {
+    border-top: 1px solid var(--border);
+    margin-bottom: var(--sp-12);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Trigger ───────────────────────────────────────────── */
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    padding-block: var(--sp-5);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    text-align: left;
+    transition: color var(--t-fast);
+  }
+
+  .faq-trigger:hover .faq-q,
+  .faq-item.open .faq-q { color: var(--text-1); }
+
+  .faq-q {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--text-2);
+    line-height: var(--lh-tight);
+    transition: color var(--t-fast);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--text-3);
+    transition: transform var(--t-base) var(--ease-smooth), color var(--t-fast);
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+
+  /* ── Panel ─────────────────────────────────────────────── */
+  .faq-panel {
+    padding-bottom: var(--sp-6);
+  }
+
+  .faq-answer {
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    line-height: var(--lh-body);
+  }
+
+  .faq-answer p { margin-bottom: var(--sp-3); }
+  .faq-answer p:last-child { margin-bottom: 0; }
+
+  .faq-answer ul {
+    padding-left: var(--sp-5);
+    margin-top: var(--sp-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .faq-answer ul li {
+    position: relative;
+    padding-left: var(--sp-4);
+    color: var(--text-2);
+    font-size: var(--text-sm);
+  }
+
+  .faq-answer ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--text-3);
+  }
+
+  .faq-answer strong { color: var(--text-1); }
+
+  .faq-answer a {
+    color: var(--accent);
+    text-decoration-color: var(--border-accent);
+  }
+
+  /* ── Footer link ───────────────────────────────────────── */
+  .faq-phone-card {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+    padding: var(--sp-6);
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--r-lg);
+    text-decoration: none;
+    transition: background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+    margin-top: var(--sp-4);
+  }
+
+  .faq-phone-card:hover {
+    background: var(--bg-elevated);
+    border-color: var(--accent);
+    box-shadow: 0 0 24px rgba(118, 229, 252, 0.10);
+    opacity: 1;
+  }
+
+  .faq-phone-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--r-md);
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .faq-phone-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .faq-phone-label {
+    font-size: var(--text-xs);
+    color: var(--text-3);
+    margin: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .faq-phone-number {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .faq-phone-note {
+    font-size: 12px;
+    color: var(--text-3);
+    margin: 0;
+  }
+
+  .faq-phone-arrow {
+    flex-shrink: 0;
+    color: var(--accent);
+    opacity: 0.5;
+    transition: opacity var(--t-fast), transform var(--t-fast);
+  }
+
+  .faq-phone-card:hover .faq-phone-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+</style>

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Inscripción abierta para adultos de 65 años o más. Estudio de investigación médica sobre una vacuna contra la gripe. Autorizado por ANMAT. Sin cobertura médica requerida."/>
+  <title>Estudio NUSI-001 — Vacuna contra la gripe | Nusilab</title>
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Leaflet CSS (deferred visually) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <link rel="stylesheet" href="css/styles.css"/>
+
+  <!-- GTM placeholder — replace GTM-XXXXXXX with your container ID -->
+  <!--
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+  -->
+</head>
+<body>
+
+  <!-- ============================================================
+       COOKIE BANNER
+  ============================================================ -->
+  <div id="cookie-banner" class="cookie-banner" role="alertdialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <p id="cookie-title"><strong>Usamos cookies</strong></p>
+        <p id="cookie-desc">Utilizamos cookies para analítica y mejora del sitio. Sus datos se manejan según nuestra <a href="privacy.html">Política de Privacidad</a>.</p>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn-cookie-reject" id="cookie-reject">Solo esenciales</button>
+        <button class="btn-cookie-accept" id="cookie-accept">Aceptar todas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-inner" aria-label="Navegación principal">
+      <a href="/" class="site-logo" aria-label="Nusilab — inicio">
+        <img src="assets/logo.svg" alt="Nusilab" width="128" height="36" loading="eager"/>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú de navegación">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <div class="nav-menu" id="nav-menu" role="navigation">
+        <ul class="nav-links" role="list">
+          <li><a href="#detalles-del-estudio" class="nav-link">Detalles del estudio</a></li>
+          <li><a href="#criterios-de-elegibilidad" class="nav-link">Criterios de elegibilidad</a></li>
+          <li><a href="#que-pasara-en-este-estudio" class="nav-link">Qué pasará</a></li>
+          <li><a href="#que-puede-hacer-ahora" class="nav-link">Próximos pasos</a></li>
+          <li><a href="#donde-puede-participar" class="nav-link">Dónde participar</a></li>
+          <li><a href="#preguntas-frecuentes" class="nav-link">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <a href="#" class="btn btn-primary nav-cta" id="nav-cta-btn" aria-label="Ver si puede calificar para el estudio">
+        Ver si puede calificar
+      </a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-inner container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="badge badge-phase">Fase 3</span>
+            <span class="badge badge-open">Inscripción abierta</span>
+          </div>
+          <h1 id="hero-heading" class="hero-heading">
+            Estudio de investigación médica sobre una vacuna contra la gripe para adultos sanos
+          </h1>
+          <p class="hero-sub">
+            Inscripción abierta para personas de <strong>65 años o más</strong>
+          </p>
+          <a href="#" class="btn btn-primary btn-hero" id="hero-cta-btn" aria-label="Ver si puede calificar para el estudio">
+            Ver si puede calificar
+          </a>
+          <ul class="trust-badges" aria-label="Información de confianza del estudio">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1L10.2 5.5L15.2 6.3L11.6 9.8L12.5 14.8L8 12.5L3.5 14.8L4.4 9.8L0.8 6.3L5.8 5.5L8 1Z" fill="#6457A6"/></svg>
+              Aprobado por Comité de Ética
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5C4.4 1.5 1.5 4.4 1.5 8C1.5 11.6 4.4 14.5 8 14.5C11.6 14.5 14.5 11.6 14.5 8C14.5 4.4 11.6 1.5 8 1.5ZM7 11.5L4 8.5L5.4 7.1L7 8.7L10.6 5.1L12 6.5L7 11.5Z" fill="#6457A6"/></svg>
+              Centro de salud autorizado
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1C7.4 1 7 1.4 7 2V3.1C5 3.5 3.5 5.1 3.5 7C3.5 9.2 5.5 11 8 11C10.5 11 12.5 9.2 12.5 7C12.5 5.1 11 3.5 9 3.1V2C9 1.4 8.6 1 8 1ZM8 9.5C6.3 9.5 5 8.4 5 7C5 5.6 6.3 4.5 8 4.5C9.7 4.5 11 5.6 11 7C11 8.4 9.7 9.5 8 9.5ZM5 13C5 12.4 6.3 12 8 12C9.7 12 11 12.4 11 13V14H5V13Z" fill="#6457A6"/></svg>
+              Sin cobertura médica requerida
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-stats" aria-label="Datos clave del estudio">
+          <div class="stats-card">
+            <div class="stats-accent-bar"></div>
+            <div class="stats-grid">
+              <div class="stat-item stat-featured">
+                <span class="stat-value">Fase 3</span>
+                <span class="stat-label">Etapa del estudio</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">840</span>
+                <span class="stat-label">Participantes</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">~1 año</span>
+                <span class="stat-label">Duración</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">2 a 4</span>
+                <span class="stat-label">Visitas al centro</span>
+              </div>
+            </div>
+            <div class="stats-footer">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 0.5L8.8 4.2L12.8 4.8L10 7.5L10.6 11.5L7 9.6L3.4 11.5L4 7.5L1.2 4.8L5.2 4.2L7 0.5Z" fill="#6457A6"/></svg>
+              <span>Autorizado por ANMAT · RENIS IS00-666</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DETALLES DEL ESTUDIO
+    ============================================================ -->
+    <section id="detalles-del-estudio" class="section section-alt" aria-labelledby="detalles-heading">
+      <div class="container">
+        <h2 id="detalles-heading" class="section-heading">Detalles del estudio</h2>
+
+        <div class="section-body">
+          <h3 class="subsection-heading">Acerca del estudio</h3>
+          <p>
+            Nusilab Incorporated (patrocinador del estudio) está evaluando la seguridad y la respuesta del sistema inmune de una <strong>vacuna contra la gripe en adultos sanos de 65 años o más</strong>.
+          </p>
+          <p>
+            La gripe (influenza) es una enfermedad respiratoria que se contagia fácilmente y afecta la nariz, la garganta y, a veces, los pulmones. Puede ser más seria en personas mayores.
+          </p>
+          <p>
+            Este estudio compara la vacuna en investigación con una <strong>vacuna antigripal ya aprobada</strong> (llamada "comparador").
+          </p>
+
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4 class="detail-card-title">Duración y visitas</h4>
+              <ul class="detail-list">
+                <li>Participación aproximada: <strong>1 año</strong> (incluye selección y seguimiento)</li>
+                <li><strong>2 a 4 visitas</strong> al centro del estudio</li>
+              </ul>
+            </div>
+
+            <div class="detail-card">
+              <h4 class="detail-card-title">Apoyo para transporte y comidas</h4>
+              <p>El patrocinador <strong>puede cubrir</strong> gastos relacionados con sus visitas:</p>
+              <ul class="detail-list">
+                <li>Transporte público, taxi, auto particular o estacionamiento</li>
+                <li>Desayuno, almuerzo o snack durante las visitas</li>
+              </ul>
+              <p class="detail-note">El equipo del centro le brindará más detalles.</p>
+            </div>
+
+            <div class="detail-card detail-card-regulatory">
+              <h4 class="detail-card-title">Autorización regulatoria</h4>
+              <p>Este estudio de farmacología clínica está <strong>autorizado por ANMAT</strong>.</p>
+              <p>Si tiene preguntas, comuníquese con ANMAT al <a href="tel:08003331234" class="tel-link"><strong>0800-333-1234</strong></a> (línea gratuita).</p>
+            </div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-item">
+              <span class="meta-label">Estimación de Participantes</span>
+              <span class="meta-value">840 participantes</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Fase</span>
+              <span class="meta-value meta-value-phase">Fase 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CRITERIOS DE ELEGIBILIDAD
+    ============================================================ -->
+    <section id="criterios-de-elegibilidad" class="section" aria-labelledby="elegibilidad-heading">
+      <div class="container">
+        <h2 id="elegibilidad-heading" class="section-heading">Criterios de elegibilidad</h2>
+
+        <p class="section-intro">
+          Su participación puede <strong>mejorar el conocimiento</strong> sobre vacunas contra la gripe y <strong>apoyar nuevas opciones de prevención</strong> en el futuro.
+        </p>
+        <p class="section-intro">Podría participar si cumple los siguientes criterios clave:</p>
+
+        <div class="eligibility-block">
+          <h3 class="eligibility-title">Los participantes deben:</h3>
+          <ol class="eligibility-list">
+            <li>
+              <span class="eligibility-icon" aria-hidden="true">1</span>
+              <span>Estar disponibles durante todo el estudio.</span>
+            </li>
+            <li>
+              <span class="eligibility-icon" aria-hidden="true">2</span>
+              <span>Tener <strong>65 años o más</strong>.</span>
+            </li>
+            <li>
+              <span class="eligibility-icon" aria-hidden="true">3</span>
+              <span>Estar en <strong>buen estado general de salud</strong> (el médico del estudio lo confirmará durante la evaluación).</span>
+            </li>
+            <li>
+              <span class="eligibility-icon" aria-hidden="true">4</span>
+              <span><strong>No</strong> haber recibido una vacuna contra la gripe en los <strong>últimos 6 meses</strong>.</span>
+            </li>
+            <li>
+              <span class="eligibility-icon" aria-hidden="true">5</span>
+              <span>Poder asistir a <strong>2 a 4 visitas</strong> del estudio.</span>
+            </li>
+            <li>
+              <span class="eligibility-icon" aria-hidden="true">6</span>
+              <span>Poder completar un <strong>breve diario electrónico</strong> cada semana (y cuando tenga síntomas parecidos a la gripe).</span>
+            </li>
+          </ol>
+          <p class="eligibility-note"><em>Aplican otros criterios de elegibilidad.</em></p>
+        </div>
+
+        <div class="section-cta-row">
+          <a href="#" class="btn btn-primary" id="eligibility-cta-btn" aria-label="Ver si puede calificar para el estudio">
+            Ver si puede calificar
+          </a>
+          <p class="cta-support-text">Sin costo médico · Puede retirarse en cualquier momento</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         QUÉ PASARÁ EN ESTE ESTUDIO
+    ============================================================ -->
+    <section id="que-pasara-en-este-estudio" class="section section-alt" aria-labelledby="proceso-heading">
+      <div class="container">
+        <h2 id="proceso-heading" class="section-heading">Qué pasará en este estudio</h2>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step-number" aria-hidden="true">1</div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">Visita inicial al centro</h3>
+              <p>Si está interesado en unirse y cumple los requisitos iniciales, deberá visitar una clínica o consultorio del estudio.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-number" aria-hidden="true">2</div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">Explicación y consentimiento</h3>
+              <p>Un médico le explicará todos los detalles del estudio. Si decide participar, deberá leer y firmar el <strong>Formulario de Consentimiento Informado (FCI)</strong>.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-number" aria-hidden="true">3</div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">Evaluación médica</h3>
+              <p>El equipo médico realizará una evaluación y le hará preguntas sobre su historia clínica para confirmar si cumple con los criterios del estudio.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-number" aria-hidden="true">4</div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">Asignación al azar</h3>
+              <p>Si es elegible y decide participar, será asignado al azar a uno de dos grupos:</p>
+              <ul class="process-step-list">
+                <li>Vacuna en investigación</li>
+                <li>Vacuna comparadora (ya aprobada)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="process-footer">
+          <p>Su participación durará aproximadamente <strong>1 año</strong> e incluye entre <strong>2 y 4 visitas</strong> al centro del estudio. Antes de decidir, el equipo le explicará todos los detalles, las visitas y los exámenes que se realizarán.</p>
+          <p class="process-withdrawal">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5C4.4 1.5 1.5 4.4 1.5 8C1.5 11.6 4.4 14.5 8 14.5C11.6 14.5 14.5 11.6 14.5 8C14.5 4.4 11.6 1.5 8 1.5ZM7 11.5L4 8.5L5.4 7.1L7 8.7L10.6 5.1L12 6.5L7 11.5Z" fill="#6457A6"/></svg>
+            Puede retirarse del estudio en cualquier momento, sin dar una razón y sin que esto afecte su atención médica ni sus derechos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         QUÉ PUEDE HACER AHORA
+    ============================================================ -->
+    <section id="que-puede-hacer-ahora" class="section" aria-labelledby="pasos-heading">
+      <div class="container">
+        <h2 id="pasos-heading" class="section-heading">¿Qué puede hacer ahora?</h2>
+
+        <ol class="next-steps">
+          <li class="next-step-item">
+            <span class="next-step-num" aria-hidden="true">1</span>
+            <div class="next-step-body">
+              <strong>Completar el cuestionario de preselección en este sitio web.</strong>
+              <a href="#" class="next-step-cta" id="steps-cta-btn" aria-label="Comenzar el cuestionario de preselección">Comenzar ahora →</a>
+            </div>
+          </li>
+          <li class="next-step-item">
+            <span class="next-step-num" aria-hidden="true">2</span>
+            <div class="next-step-body">
+              <strong>Seleccionar una clínica o consultorio del estudio.</strong>
+              <a href="#donde-puede-participar" class="next-step-link">Ver centros disponibles</a>
+            </div>
+          </li>
+          <li class="next-step-item">
+            <span class="next-step-num" aria-hidden="true">3</span>
+            <div class="next-step-body">
+              <strong>Compartir sus datos de contacto con el coordinador del estudio.</strong>
+            </div>
+          </li>
+          <li class="next-step-item">
+            <span class="next-step-num" aria-hidden="true">4</span>
+            <div class="next-step-body">
+              <strong>Responder al coordinador de la clínica o consultorio que seleccionó.</strong>
+            </div>
+          </li>
+          <li class="next-step-item">
+            <span class="next-step-num" aria-hidden="true">5</span>
+            <div class="next-step-body">
+              <strong>Compartir el número de identificación del estudio con su médico.</strong>
+              <span class="renis-badge">Número de Registro RENIS: <strong>IS00-666</strong></span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="travel-support-block">
+          <h3 class="travel-support-title">Apoyo para viajes</h3>
+          <p>El patrocinador del estudio puede <strong>ayudar a cubrir</strong> gastos de viaje y comidas relacionados con sus visitas del estudio.</p>
+          <ul class="travel-list">
+            <li>Reembolso por viaje (transporte público, taxi, auto particular, estacionamiento)</li>
+            <li>Desayuno, almuerzo o snack durante las visitas del estudio</li>
+          </ul>
+          <p class="travel-note">El personal de la clínica o consultorio podrá brindarle más información si decide participar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DÓNDE PUEDE PARTICIPAR
+    ============================================================ -->
+    <section id="donde-puede-participar" class="section section-alt" aria-labelledby="mapa-heading">
+      <div class="container">
+        <h2 id="mapa-heading" class="section-heading">Dónde Puede Participar</h2>
+        <p class="section-intro">Tendrá que trasladarse a una de las clínicas o consultorios del estudio participantes. En el mapa verá los centros marcados con su estado actual.</p>
+
+        <!-- Map -->
+        <div class="map-wrapper" role="region" aria-label="Mapa de centros del estudio">
+          <div id="study-map" aria-label="Mapa interactivo de clínicas participantes"></div>
+          <div class="map-legend" aria-label="Referencias del mapa">
+            <span class="legend-item legend-recruiting">
+              <span class="legend-dot" aria-hidden="true"></span>En reclutamiento
+            </span>
+            <span class="legend-item legend-soon">
+              <span class="legend-dot" aria-hidden="true"></span>Próximamente
+            </span>
+          </div>
+        </div>
+
+        <!-- Clinics list -->
+        <div class="clinics-grid" role="list" aria-label="Lista de centros participantes">
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">STAMBOULIAN – Sede Libertador</h3>
+            <p class="clinic-address">Av. del Libertador 5868</p>
+            <p class="clinic-city">CABA · C1428</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">STAMBOULIAN – Microcentro</h3>
+            <p class="clinic-address">25 de Mayo 464</p>
+            <p class="clinic-city">CABA · C1002</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">Centro Médico Vacunar</h3>
+            <p class="clinic-address">Emilio Lamarca 3388</p>
+            <p class="clinic-city">CABA · C1417</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">Centro Médico IPENSA – Vacunatorio</h3>
+            <p class="clinic-address">Calle 59 Nº 946</p>
+            <p class="clinic-city">La Plata, Buenos Aires · B1900</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">HCM Tucumán – Centro de Vacunación</h3>
+            <p class="clinic-address">Virgen de la Merced 575</p>
+            <p class="clinic-city">San Miguel de Tucumán, Tucumán · T4000</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">Sanatorio Parque – Vacunatorio</h3>
+            <p class="clinic-address">Bv. Oroño 850</p>
+            <p class="clinic-city">Rosario, Santa Fe · S2000</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">Centro Médico Fundación San Roque</h3>
+            <p class="clinic-address">Entre Ríos 428</p>
+            <p class="clinic-city">Córdoba Capital, Córdoba · X5000</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">Centro Municipal de Vacunación de Avellaneda</h3>
+            <p class="clinic-address">Av. Manuel Belgrano 901</p>
+            <p class="clinic-city">Avellaneda, Buenos Aires · B1870</p>
+          </article>
+
+          <article class="clinic-card" role="listitem">
+            <div class="clinic-status clinic-status-recruiting">En reclutamiento</div>
+            <h3 class="clinic-name">Centro Rossi – Vacunatorio</h3>
+            <p class="clinic-address">Dardo Rocha 3034</p>
+            <p class="clinic-city">San Isidro, Buenos Aires · B1640</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PREGUNTAS FRECUENTES
+    ============================================================ -->
+    <section id="preguntas-frecuentes" class="section" aria-labelledby="faq-heading">
+      <div class="container container-narrow">
+        <h2 id="faq-heading" class="section-heading">Preguntas Frecuentes</h2>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
+              <span>¿Cómo empiezo?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-1" hidden>
+              <p>Haga clic en <a href="#" class="faq-cta-link" id="faq-cta-link">Ver si puede calificar</a> para comenzar la encuesta de preselección.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
+              <span>¿Recibiré compensación?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-2" hidden>
+              <p>No recibirá un pago por participar en este estudio. Sin embargo, puede recibir:</p>
+              <ul>
+                <li><strong>Atención</strong> relacionada con el estudio, <strong>sin costo.</strong></li>
+                <li><strong>Apoyo para viajes y comidas</strong> para las visitas a la clínica o consultorio del estudio.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
+              <span>¿Dónde se realiza el estudio?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-3" hidden>
+              <p>El estudio se llevará a cabo en <strong>distintos países del mundo</strong>. En Argentina, puede participar en cualquiera de los <a href="#donde-puede-participar">9 centros habilitados</a>.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
+              <span>¿Necesito tener cobertura médica (obra social/prepaga)?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-4" hidden>
+              <p><strong>No.</strong> No se requiere cobertura médica para participar.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
+              <span>¿Cuánto dura el estudio?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-5" hidden>
+              <p>Los participantes estarán en el estudio durante aproximadamente <strong>1 año</strong> (incluye selección y seguimiento) y asistirán entre <strong>2 y 4 veces</strong> al centro del estudio.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-6">
+              <span>¿Qué es un comparador de vacuna contra la gripe?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-6" hidden>
+              <p>Es una vacuna contra la gripe que ya está aprobada y es de uso común. Permite <strong>comparar</strong> cómo funciona la vacuna en investigación frente a una vacuna conocida.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-7">
+              <span>¿Puedo retirarme del estudio en cualquier momento?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-7" hidden>
+              <p><strong>Sí.</strong> Puede dejar el estudio cuando lo desee, <strong>sin dar una razón y sin que esto afecte su atención médica ni sus derechos</strong>.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Final CTA -->
+        <div class="faq-cta-block">
+          <p>¿Tiene 65 años o más y desea saber si puede participar?</p>
+          <a href="#" class="btn btn-primary btn-large" id="faq-bottom-cta-btn" aria-label="Ver si puede calificar para el estudio">
+            Ver si puede calificar
+          </a>
+          <p class="cta-support-text">Sin costo médico · Puede retirarse en cualquier momento · Autorizado por ANMAT</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/logo.svg" alt="Nusilab" width="108" height="30" class="footer-logo" loading="lazy"/>
+          <p class="footer-tagline">Estudio clínico NUSI-001 · Versión ARG</p>
+        </div>
+        <div class="footer-legal-text">
+          <p>© 2026 Nusilab Incorporated. All rights reserved.</p>
+          <p>Este estudio está autorizado por ANMAT. Registro RENIS: IS00-666.<br/>Para preguntas regulatorias llame al <a href="tel:08003331234">0800-333-1234</a> (línea gratuita).</p>
+        </div>
+        <nav class="footer-links" aria-label="Vínculos legales">
+          <a href="privacy.html">Política de Privacidad</a>
+          <a href="privacy.html#terminos">Términos y Condiciones</a>
+          <a href="#" id="cookie-settings-btn">Configuración de cookies</a>
+        </nav>
+        <p class="footer-wcag">Accesibilidad: WCAG 2.1 AA · <a href="mailto:privacy@line.com">privacy@line.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       PRESCREENING MODAL
+  ============================================================ -->
+  <dialog id="prescreening-modal" class="modal" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal-inner">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <img src="assets/logo.svg" alt="Nusilab" width="100" height="28" class="modal-logo"/>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar cuestionario">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="modal-progress" id="modal-progress" aria-hidden="true">
+        <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+      </div>
+
+      <!-- ====== STEP: NOTICE ====== -->
+      <div class="form-step" id="step-notice" data-step="notice">
+        <h2 id="modal-title" class="form-step-title">Cuestionario de preselección</h2>
+        <p class="form-step-subtitle">Antes de comenzar, lea la siguiente información.</p>
+
+        <div class="notice-box">
+          <p>Este cuestionario en línea (la "Encuesta") le hará varias preguntas relacionadas con su salud para determinar si reúne los requisitos para participar en el estudio clínico NUSI-001.</p>
+          <p>Si sus respuestas indican que podría calificar, tendrá la opción de compartir su información de contacto y sus respuestas para revisión y seguimiento.</p>
+          <p>Si <strong>no desea</strong> que se comparta su información, simplemente salga de la Encuesta sin enviarla.</p>
+          <p>Si desea ser considerado, se le pedirá que lea y acepte un formulario de <strong>divulgación de información</strong> para permitir a Nusilab compartir sus datos con los centros del estudio participantes.</p>
+        </div>
+
+        <label class="checkbox-label" for="notice-consent">
+          <input type="checkbox" id="notice-consent" name="notice_consent" required/>
+          <span class="checkbox-custom" aria-hidden="true"></span>
+          <span>Reconozco y acepto</span>
+        </label>
+
+        <button class="btn btn-primary btn-full" id="notice-next-btn" disabled>
+          Iniciar encuesta
+        </button>
+      </div>
+
+      <!-- ====== STEP 1 ====== -->
+      <div class="form-step" id="step-1" data-step="1" hidden>
+        <div class="form-step-meta" aria-label="Paso 1 de 2">
+          <span class="step-indicator">Paso 1 de 2</span>
+          <span class="step-time">30–45 segundos</span>
+        </div>
+        <h2 class="form-step-title">Sus datos de contacto</h2>
+        <p class="form-step-subtitle">Esta información solo se utilizará para contactarle sobre este estudio.</p>
+
+        <form id="prescreening-form" novalidate>
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label for="f-nombre" class="form-label">Nombre <span class="required" aria-label="campo requerido">*</span></label>
+              <input type="text" id="f-nombre" name="nombre" class="form-input" autocomplete="given-name" required aria-required="true"/>
+            </div>
+            <div class="form-group">
+              <label for="f-apellido" class="form-label">Apellido <span class="required" aria-label="campo requerido">*</span></label>
+              <input type="text" id="f-apellido" name="apellido" class="form-input" autocomplete="family-name" required aria-required="true"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-telefono" class="form-label">Teléfono principal <span class="required" aria-label="campo requerido">*</span></label>
+            <input type="tel" id="f-telefono" name="telefono" class="form-input" autocomplete="tel" required aria-required="true" aria-describedby="telefono-hint"/>
+            <span class="form-hint" id="telefono-hint">Solo números, sin espacios. Ej.: 11xxxxxxxx</span>
+          </div>
+
+          <div class="form-group">
+            <label for="f-email" class="form-label">Correo electrónico <span class="required" aria-label="campo requerido">*</span></label>
+            <input type="email" id="f-email" name="email" class="form-input" autocomplete="email" required aria-required="true" aria-describedby="email-hint"/>
+            <span class="form-hint" id="email-hint">Usaremos este correo solo para contactarlo/a sobre este estudio.</span>
+          </div>
+
+          <div class="form-group">
+            <fieldset>
+              <legend class="form-label">¿Tiene 65 años o más? <span class="required" aria-label="campo requerido">*</span></legend>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="edad-si" name="edad_65_mas" value="si" required/>
+                  <label for="edad-si">Sí</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="edad-no" name="edad_65_mas" value="no"/>
+                  <label for="edad-no">No</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <fieldset>
+              <legend class="form-label">¿Recibió una vacuna contra la gripe en los últimos 6 meses? <span class="required" aria-label="campo requerido">*</span></legend>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="vacuna-si" name="vacuna_6_meses" value="si" required/>
+                  <label for="vacuna-si">Sí</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="vacuna-no" name="vacuna_6_meses" value="no"/>
+                  <label for="vacuna-no">No</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="vacuna-nr" name="vacuna_6_meses" value="no_recuerdo"/>
+                  <label for="vacuna-nr">No recuerdo</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label for="f-provincia" class="form-label">Provincia <span class="required" aria-label="campo requerido">*</span></label>
+              <select id="f-provincia" name="provincia" class="form-select" required aria-required="true">
+                <option value="">Seleccionar provincia</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="CABA">Ciudad Autónoma de Buenos Aires (CABA)</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Chubut">Chubut</option>
+                <option value="Córdoba">Córdoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Ríos">Entre Ríos</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Neuquén">Neuquén</option>
+                <option value="Río Negro">Río Negro</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Santiago del Estero">Santiago del Estero</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option>
+                <option value="Tucumán">Tucumán</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-cp" class="form-label">Código postal <span class="required" aria-label="campo requerido">*</span></label>
+              <input type="text" id="f-cp" name="codigo_postal" class="form-input" inputmode="numeric" pattern="[0-9A-Za-z]{4,8}" required aria-required="true"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label" for="f-comunicaciones">
+              <input type="checkbox" id="f-comunicaciones" name="consentimiento_contacto"/>
+              <span class="checkbox-custom" aria-hidden="true"></span>
+              <span>Acepto recibir comunicaciones sobre este estudio por teléfono, SMS, WhatsApp o correo electrónico. Puedo responder "PARAR" para dejar de recibir mensajes en cualquier momento.</span>
+            </label>
+          </div>
+
+        </form>
+
+        <button class="btn btn-primary btn-full" id="step1-next-btn">Continuar</button>
+      </div>
+
+      <!-- ====== STEP 2 ====== -->
+      <div class="form-step" id="step-2" data-step="2" hidden>
+        <div class="form-step-meta" aria-label="Paso 2 de 2">
+          <span class="step-indicator">Paso 2 de 2</span>
+          <span class="step-time">20–30 segundos</span>
+        </div>
+        <h2 class="form-step-title">Unas preguntas sobre su salud</h2>
+        <p class="form-step-subtitle">Toda la información es confidencial y se usará solo para determinar su elegibilidad.</p>
+
+        <div class="form-group">
+          <fieldset>
+            <legend class="form-label">¿Tiene disponibilidad para participar en el estudio, completar el diario del paciente semanalmente y asistir a las visitas? <span class="required" aria-label="campo requerido">*</span></legend>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="disp-si" name="disponibilidad" value="si" required/>
+                <label for="disp-si">Sí</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="disp-no" name="disponibilidad" value="no"/>
+                <label for="disp-no">No</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <fieldset>
+            <legend class="form-label">¿Ha recibido alguna vacuna contra la gripe (en investigación o aprobada) en los últimos 6 meses? <span class="required" aria-label="campo requerido">*</span></legend>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="vac2-si" name="vacuna_gripe_6m_confirmacion" value="si" required/>
+                <label for="vac2-si">Sí</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="vac2-no" name="vacuna_gripe_6m_confirmacion" value="no"/>
+                <label for="vac2-no">No</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <fieldset>
+            <legend class="form-label">¿Ha dado positivo para el virus de la gripe en los últimos 6 meses? <span class="required" aria-label="campo requerido">*</span></legend>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="grip-si" name="positivo_gripe" value="si" required/>
+                <label for="grip-si">Sí</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="grip-no" name="positivo_gripe" value="no"/>
+                <label for="grip-no">No</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="grip-nr" name="positivo_gripe" value="no_recuerdo"/>
+                <label for="grip-nr">No recuerdo</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <fieldset>
+            <legend class="form-label">¿Tiene antecedentes de reacciones adversas graves o alérgicas a cualquier vacuna? <span class="required" aria-label="campo requerido">*</span></legend>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="alergia-si" name="alergias_graves" value="si" required/>
+                <label for="alergia-si">Sí</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="alergia-no" name="alergias_graves" value="no"/>
+                <label for="alergia-no">No</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="alergia-ns" name="alergias_graves" value="no_seguro"/>
+                <label for="alergia-ns">No estoy seguro/a</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group">
+          <fieldset>
+            <legend class="form-label">¿Tiene alguna condición médica preexistente o de larga duración? <span class="required" aria-label="campo requerido">*</span></legend>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="cond-si" name="condicion_preexistente" value="si" required/>
+                <label for="cond-si">Sí</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="cond-no" name="condicion_preexistente" value="no"/>
+                <label for="cond-no">No</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Conditional: estabilidad (shown when condicion=si) -->
+        <div class="form-group" id="estabilidad-group" hidden>
+          <fieldset>
+            <legend class="form-label">¿Se encuentra estable? <span class="required" aria-label="campo requerido">*</span></legend>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="estable-si" name="condicion_estable" value="si"/>
+                <label for="estable-si">Sí</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="estable-no" name="condicion_estable" value="no"/>
+                <label for="estable-no">No</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="estable-ns" name="condicion_estable" value="no_seguro"/>
+                <label for="estable-ns">No estoy seguro/a</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-group form-group-optional">
+          <span class="optional-label">Campos opcionales</span>
+          <div class="form-row form-row-3">
+            <div class="form-group">
+              <label for="f-genero" class="form-label">Género</label>
+              <select id="f-genero" name="genero" class="form-select">
+                <option value="">Prefiero no responder</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Prefiero no responder">Prefiero no responder</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-raza" class="form-label">Raza</label>
+              <select id="f-raza" name="raza" class="form-select">
+                <option value="">Prefiero no responder</option>
+                <option value="Blanca">Blanca</option>
+                <option value="Negra o Afroamericana">Negra o Afroamericana</option>
+                <option value="Asiática">Asiática</option>
+                <option value="Nativa Americana o Nativa de Alaska">Nativa Americana o Nativa de Alaska</option>
+                <option value="Nativa de Hawái u otra Isla del Pacífico">Nativa de Hawái u otra Isla del Pacífico</option>
+                <option value="Desconocido / Prefiero no responder">Desconocido / Prefiero no responder</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-etnicidad" class="form-label">Etnicidad</label>
+              <select id="f-etnicidad" name="etnicidad" class="form-select">
+                <option value="">Prefiero no responder</option>
+                <option value="Hispano o Latino">Hispano o Latino</option>
+                <option value="No Hispano o Latino">No Hispano o Latino</option>
+                <option value="Desconocido / Prefiero no responder">Desconocido / Prefiero no responder</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-full" id="step2-submit-btn">Ver mis próximos pasos</button>
+      </div>
+
+      <!-- ====== RESULT: ELIGIBLE (probable/posible) ====== -->
+      <div class="form-step" id="step-eligible" data-step="eligible" hidden>
+        <div class="result-icon result-icon-success" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#6457A6" opacity="0.12"/><path d="M14 24L21 31L34 17" stroke="#6457A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 class="form-step-title">¡Gracias!</h2>
+        <p class="form-result-intro">Gracias por su interés en este ensayo. <strong>El equipo del ensayo se pondrá en contacto en breve</strong> con los próximos pasos.</p>
+
+        <div class="result-box result-box-success">
+          <p>Si el personal de la clínica no se comunica con usted en un plazo de <strong>3 días hábiles</strong>, comuníquese con ellos directamente:</p>
+          <ul class="result-contact-list">
+            <li>Llame al <a href="tel:+5491168002020"><strong>+54 9 11 6800-2020</strong></a></li>
+            <li>Mencione que está interesado/a en el ensayo clínico <strong>NUSI-001</strong></li>
+            <li>Indique que fue derivado/a a través de la plataforma de Nusilab</li>
+          </ul>
+        </div>
+
+        <p class="result-email-note">Recibirá un correo electrónico de Nusilab con esta información y con la Política de consentimiento de divulgación de información adjunta.</p>
+
+        <button class="btn btn-outline btn-full" id="eligible-close-btn">Cerrar</button>
+      </div>
+
+      <!-- ====== RESULT: NOT ELIGIBLE ====== -->
+      <div class="form-step" id="step-not-eligible" data-step="not-eligible" hidden>
+        <div class="result-icon result-icon-neutral" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#9DACFF" opacity="0.2"/><path d="M24 14V26M24 32V34" stroke="#6457A6" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
+        <h2 class="form-step-title">Gracias por su interés</h2>
+        <p>Gracias por su interés en este ensayo clínico. Cada ensayo clínico tiene criterios específicos requeridos para la inscripción. En función de sus respuestas, lamentablemente no reúne los requisitos para participar en este ensayo clínico en este momento.</p>
+        <p>Agradecemos su interés.</p>
+        <button class="btn btn-outline btn-full" id="not-eligible-close-btn">Volver al sitio</button>
+      </div>
+
+      <!-- ====== RESULT: WAITLIST ====== -->
+      <div class="form-step" id="step-waitlist" data-step="waitlist" hidden>
+        <div class="result-icon result-icon-waitlist" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="#76E5FC" opacity="0.2"/><path d="M24 14V24L30 30" stroke="#4BC0D9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 class="form-step-title">Gracias por su interés</h2>
+        <p>Según sus respuestas, <strong>podría calificar en una próxima ventana del estudio</strong>. Si lo desea, puede unirse a la lista de espera para que lo/la contactemos cuando se reabra la elegibilidad.</p>
+        <button class="btn btn-primary btn-full" id="waitlist-join-btn">Unirme a la lista de espera</button>
+        <button class="btn btn-outline btn-full" id="waitlist-close-btn">No por ahora</button>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/form.js" defer></script>
+
+</body>
+</html>

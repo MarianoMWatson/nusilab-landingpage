@@ -1,0 +1,211 @@
+---
+const criteria = [
+  {
+    n: '01',
+    title: '65 años o más',
+    body: 'Debe tener 65 años de edad o más en el momento de la inscripción al estudio.',
+    ok: true,
+  },
+  {
+    n: '02',
+    title: 'Sin alergia a vacunas contra la gripe',
+    body: 'No haber tenido ninguna reacción alérgica grave (anafilaxis) a ninguna vacuna contra la gripe anterior.',
+    ok: true,
+  },
+  {
+    n: '03',
+    title: 'Sin vacuna reciente contra la gripe',
+    body: 'No haber recibido ninguna vacuna contra la gripe en las 6 semanas previas a la inscripción.',
+    ok: true,
+  },
+  {
+    n: '04',
+    title: 'Sin condición médica inestable',
+    body: 'No padecer ninguna enfermedad activa o crónica inestable que pueda afectar la participación en el estudio.',
+    ok: true,
+  },
+  {
+    n: '05',
+    title: 'Disponibilidad para las visitas',
+    body: 'Poder asistir al centro del estudio entre 2 y 4 veces a lo largo de aproximadamente un año.',
+    ok: true,
+  },
+  {
+    n: '06',
+    title: 'Consentimiento informado',
+    body: 'Estar dispuesto a firmar el formulario de consentimiento informado después de recibir toda la información sobre el estudio.',
+    ok: true,
+  },
+];
+---
+<section class="section" id="criterios-de-elegibilidad" aria-labelledby="eligibility-h2">
+  <div class="container">
+
+    <div class="elig-header" data-reveal>
+      <p class="overline">
+        <span class="overline-rule" aria-hidden="true"></span>
+        <span>Criterios de elegibilidad</span>
+      </p>
+      <h2 id="eligibility-h2">¿Puede participar?</h2>
+      <p class="elig-sub">
+        Para ser elegible necesita cumplir <strong>todos</strong> los siguientes criterios.
+        El equipo médico verificará los detalles durante la visita de selección.
+      </p>
+    </div>
+
+    <ul class="criteria-grid" aria-label="Criterios de participación">
+      {criteria.map(c => (
+        <li class="criterion-card" data-reveal>
+          <span class="criterion-n" aria-hidden="true">{c.n}</span>
+          <div class="criterion-body">
+            <h3 class="criterion-title">{c.title}</h3>
+            <p class="criterion-text">{c.body}</p>
+          </div>
+          <span class="criterion-check" aria-label="Requerido">✓</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="elig-cta-block" data-reveal>
+      <p class="elig-cta-note">
+        ¿No está seguro si califica? El cuestionario de preselección le guiará paso a paso.
+      </p>
+      <a href="#" class="btn-cta" id="elig-cta-btn" aria-label="Quiero participar en el estudio">
+        QUIERO PARTICIPAR
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .elig-header {
+    max-width: 640px;
+    margin-bottom: var(--sp-12);
+  }
+
+  .elig-sub {
+    font-size: clamp(var(--text-sm), 2vw, var(--text-base));
+    color: var(--text-2);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+  .elig-sub strong { color: var(--text-1); }
+
+  /* ── Grid ──────────────────────────────────────────────── */
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    margin-bottom: var(--sp-12);
+  }
+
+  @media (min-width: 640px) {
+    .criteria-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .criteria-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ── Card ──────────────────────────────────────────────── */
+  .criterion-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-6) var(--sp-6) var(--sp-6) var(--sp-8);
+    background: var(--bg-card);
+    transition: background var(--t-fast);
+    overflow: hidden;
+  }
+
+  .criterion-card:hover { background: var(--bg-elevated); }
+
+  .criterion-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-accent);
+    opacity: 0;
+    transition: opacity var(--t-base);
+  }
+
+  .criterion-card:hover::before { opacity: 1; }
+
+  .criterion-n {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--accent-2);
+    letter-spacing: 0.06em;
+    opacity: 0.7;
+  }
+
+  .criterion-body { flex: 1; }
+
+  .criterion-title {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-1);
+    letter-spacing: -0.01em;
+    line-height: var(--lh-tight);
+    margin-bottom: var(--sp-2);
+  }
+
+  .criterion-text {
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+
+  .criterion-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    align-self: flex-start;
+  }
+
+  /* ── CTA block ─────────────────────────────────────────── */
+  .elig-cta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-4);
+  }
+
+  .elig-cta-note {
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .elig-cta-block {
+      flex-direction: row;
+      align-items: center;
+    }
+    .elig-cta-note { max-width: 400px; }
+  }
+</style>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 152 36" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nusilab">
+  <defs>
+    <linearGradient id="mark-grad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6457A6"/>
+      <stop offset="100%" stop-color="#4BC0D9"/>
+    </linearGradient>
+  </defs>
+  <!-- Mark: rounded square with N -->
+  <rect width="36" height="36" rx="9" fill="url(#mark-grad)"/>
+  <path d="M9 28 L9 8 L27 28 L27 8" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wordmark -->
+  <text x="46" y="26" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="currentColor" letter-spacing="-0.4">nusilab</text>
+</svg>
