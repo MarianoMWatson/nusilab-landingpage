@@ -48,6 +48,14 @@ document.querySelectorAll(
   });
 });
 
+// ── Real-time age warning ───────────────────────────────────────
+document.querySelectorAll('input[name="age65"]').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    const warning = document.getElementById('age-warning');
+    if (warning) warning.hidden = /** @type {HTMLInputElement} */ (e.target).value !== 'no';
+  });
+});
+
 // ── Step management ────────────────────────────────────────────
 let currentStep = 1;
 
@@ -61,13 +69,14 @@ function showStep(stepId) {
 
   // Update progress bar
   const progressMap = {
-    'step-1':           '15%',
-    'step-2':           '50%',
-    'result-probable':  '100%',
-    'result-posible':   '100%',
-    'result-no-eligible':'100%',
-    'result-waitlist':  '100%',
-    'result-thankyou':  '100%',
+    'step-1':                '15%',
+    'step-2':                '50%',
+    'result-probable':       '100%',
+    'result-posible':        '100%',
+    'result-no-eligible':    '100%',
+    'result-age-ineligible': '100%',
+    'result-waitlist':       '100%',
+    'result-thankyou':       '100%',
   };
   if (progressBar) {
     progressBar.style.width = progressMap[stepId] ?? '0%';
@@ -137,11 +146,17 @@ document.getElementById('step1-form')?.addEventListener('submit', (e) => {
   step1Answers = { age65, allergy, recent_vaccine };
   pushEvent('prescreen_step1_submit');
 
-  // Early exit check
-  if (allergy === 'yes' || age65 === 'no') {
-    const result = decide({ ...step1Answers, condition: 'no', availability: 'yes' });
-    pushEvent('eligible_status', { status: result });
-    showStep(`result-${result === 'no_eligible' ? 'no-eligible' : result}`);
+  // Early exit: edad
+  if (age65 === 'no') {
+    pushEvent('eligible_status', { status: 'no_eligible_age' });
+    showStep('result-age-ineligible');
+    return;
+  }
+
+  // Early exit: alergia
+  if (allergy === 'yes') {
+    pushEvent('eligible_status', { status: 'no_eligible' });
+    showStep('result-no-eligible');
     return;
   }
 
@@ -186,6 +201,7 @@ document.getElementById('step2-form')?.addEventListener('submit', (e) => {
 
 // ── Restart ────────────────────────────────────────────────────
 document.getElementById('restart-btn')?.addEventListener('click', resetModal);
+document.getElementById('restart-age-btn')?.addEventListener('click', resetModal);
 
 // ── Contact form submission ────────────────────────────────────
 document.querySelectorAll('.submit-contact-btn').forEach(btn => {
