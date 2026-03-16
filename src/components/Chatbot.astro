@@ -9,7 +9,6 @@
   aria-expanded="false"
 >
   <span class="chat-fab-icon" id="chat-fab-icon-open" aria-hidden="true">
-    <!-- Robot / android icon -->
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <rect x="3" y="8" width="18" height="13" rx="2"/>
       <circle cx="9"  cy="14" r="1.5" fill="currentColor" stroke="none"/>
@@ -84,31 +83,36 @@
 
 <script is:inline>
 (function () {
-  var fab        = document.getElementById('chat-fab');
-  var chatWin    = document.getElementById('chat-window');
-  var closeBtn   = document.getElementById('chat-close-btn');
-  var form       = document.getElementById('chat-form');
-  var input      = document.getElementById('chat-input');
-  var messages   = document.getElementById('chat-messages');
-  var badge      = document.getElementById('chat-fab-badge');
-  var iconOpen   = document.getElementById('chat-fab-icon-open');
-  var iconClose  = document.getElementById('chat-fab-icon-close');
-  var isOpen     = false;
+  var FORMSPREE = 'https://formspree.io/f/YOUR_FORMSPREE_FORM_ID';
 
-  var OFFLINE = [
-    '⚠️ El asistente está desconectado. Para consultas llame al <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a> (gratuito).',
-    '🔌 Sin conexión al servidor. Estamos disponibles de lunes a viernes 9–18 h en el <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a>.',
-    '⚠️ No puedo procesar su consulta en este momento. Por favor intente al <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a>.',
-  ];
-  var replyIdx = 0;
+  var fab       = document.getElementById('chat-fab');
+  var chatWin   = document.getElementById('chat-window');
+  var closeBtn  = document.getElementById('chat-close-btn');
+  var form      = document.getElementById('chat-form');
+  var input     = document.getElementById('chat-input');
+  var messages  = document.getElementById('chat-messages');
+  var badge     = document.getElementById('chat-fab-badge');
+  var iconOpen  = document.getElementById('chat-fab-icon-open');
+  var iconClose = document.getElementById('chat-fab-icon-close');
+  var isOpen    = false;
+  var offlineFormShown = false;
+  var offlineFormSubmitted = false;
+  var submittedName = '';
 
-  // ── Seed initial bot messages ──
-  addMsg('Hola 👋 Soy el asistente virtual del estudio NUSI-001. Estoy aquí para responder sus preguntas.', 'bot');
-  addMsg('⚠️ <strong style="color:#f0edf8;">Atención:</strong> estoy desconectado del servidor. Para hablar con una persona llame al <a href="tel:08003331234" style="color:#76E5FC;font-weight:700;">0800-333-1234</a> (gratuito).', 'bot', true);
+  var S = {
+    input: 'width:100%;box-sizing:border-box;padding:9px 12px;background:#13101E;border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#F0EDF8;font-family:Inter,system-ui,sans-serif;font-size:13px;outline:none;',
+    btn:   'width:100%;padding:10px 16px;background:#76E5FC;color:#0C0A14;border:none;border-radius:10px;font-family:Inter,system-ui,sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px;',
+  };
 
+  // ── Seed initial messages ──────────────────────────────────
+  addMsg('Hola 👋 Soy el asistente virtual del estudio NUSI-001. Estoy aquí para responder sus preguntas sobre el estudio.', 'bot');
+
+  // ── Open / close ───────────────────────────────────────────
   function openChat() {
     isOpen = true;
     chatWin.style.display = 'flex';
+    chatWin.classList.remove('chat-win--closing');
+    chatWin.classList.add('chat-win--open');
     fab.setAttribute('aria-expanded', 'true');
     iconOpen.style.display = 'none';
     iconClose.style.display = 'flex';
@@ -118,24 +122,31 @@
 
   function closeChat() {
     isOpen = false;
-    chatWin.style.display = 'none';
+    chatWin.classList.remove('chat-win--open');
+    chatWin.classList.add('chat-win--closing');
     fab.setAttribute('aria-expanded', 'false');
     iconOpen.style.display = 'flex';
     iconClose.style.display = 'none';
+    chatWin.addEventListener('animationend', function handler() {
+      chatWin.style.display = 'none';
+      chatWin.classList.remove('chat-win--closing');
+      chatWin.removeEventListener('animationend', handler);
+      // Reset para que la próxima apertura empiece desde cero
+      messages.innerHTML = '';
+      offlineFormShown = false;
+      offlineFormSubmitted = false;
+      submittedName = '';
+      addMsg('Hola 👋 Soy el asistente virtual del estudio NUSI-001. Estoy aquí para responder sus preguntas sobre el estudio.', 'bot');
+    });
   }
 
-  fab.addEventListener('click', function () {
-    isOpen ? closeChat() : openChat();
-  });
+  fab.addEventListener('click', function () { isOpen ? closeChat() : openChat(); });
+  closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeChat(); });
 
-  closeBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    closeChat();
-  });
-
+  // ── addMsg ─────────────────────────────────────────────────
   function addMsg(html, role, warn) {
     var wrap = document.createElement('div');
-    wrap.style.cssText = 'display:flex;flex-direction:column;gap:3px;max-width:85%;' +
+    wrap.style.cssText = 'display:flex;flex-direction:column;gap:3px;max-width:88%;' +
       (role === 'user' ? 'align-self:flex-end;align-items:flex-end;' : 'align-self:flex-start;align-items:flex-start;');
 
     var bubble = document.createElement('div');
@@ -157,6 +168,82 @@
     messages.scrollTop = messages.scrollHeight;
   }
 
+  // ── Offline form bubble ────────────────────────────────────
+  function showOfflineForm(prefill) {
+    if (offlineFormShown) {
+      // Solo actualiza el textarea si ya está visible
+      var ta = document.getElementById('ol-msg');
+      if (ta && prefill) ta.value = prefill;
+      return;
+    }
+    offlineFormShown = true;
+
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'align-self:flex-start;align-items:flex-start;max-width:95%;display:flex;flex-direction:column;gap:3px;';
+
+    var bubble = document.createElement('div');
+    bubble.style.cssText = 'background:#1A1627;border:1px solid rgba(118,229,252,0.15);border-radius:16px;border-bottom-left-radius:4px;padding:16px;font-family:Inter,system-ui,sans-serif;';
+    bubble.innerHTML =
+      '<p style="margin:0 0 12px;font-size:13px;font-weight:600;color:#F0EDF8;">Dejanos tus datos y tu consulta:</p>' +
+      '<div style="display:flex;flex-direction:column;gap:10px;">' +
+        '<input id="ol-name" type="text" placeholder="Nombre y apellido" style="' + S.input + '"/>' +
+        '<input id="ol-contact" type="text" placeholder="Teléfono o correo electrónico" style="' + S.input + '"/>' +
+        '<textarea id="ol-msg" rows="3" placeholder="¿Cuál es tu consulta?" style="' + S.input + 'resize:none;">' + (prefill || '') + '</textarea>' +
+        '<button id="ol-submit" style="' + S.btn + '">Enviar consulta →</button>' +
+        '<p id="ol-error" style="display:none;margin:0;font-size:12px;color:#f87171;"></p>' +
+      '</div>';
+
+    wrap.appendChild(bubble);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+
+    // Eventos del formulario inline
+    bubble.querySelectorAll('input, textarea').forEach(function(el) {
+      el.addEventListener('focus', function() { el.style.borderColor = '#76E5FC'; });
+      el.addEventListener('blur',  function() { el.style.borderColor = 'rgba(255,255,255,0.12)'; });
+    });
+
+    document.getElementById('ol-submit').addEventListener('click', function() {
+      var btn     = document.getElementById('ol-submit');
+      var nameVal = (document.getElementById('ol-name').value || '').trim();
+      var contactVal = (document.getElementById('ol-contact').value || '').trim();
+      var msgVal  = (document.getElementById('ol-msg').value || '').trim();
+      var errEl   = document.getElementById('ol-error');
+
+      if (!nameVal || !contactVal || !msgVal) {
+        errEl.textContent = 'Por favor completá todos los campos.';
+        errEl.style.display = 'block';
+        return;
+      }
+      errEl.style.display = 'none';
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+
+      fetch(FORMSPREE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ nombre: nameVal, contacto: contactVal, consulta: msgVal, origen: 'chatbot-offline' }),
+      })
+      .then(function(r) {
+        var firstName = nameVal.split(' ')[0];
+        offlineFormSubmitted = true;
+        submittedName = firstName;
+        bubble.innerHTML =
+          '<div style="text-align:center;padding:8px 0;">' +
+            '<p style="font-size:22px;margin:0 0 8px;">✓</p>' +
+            '<p style="margin:0;font-size:13px;color:#F0EDF8;font-weight:600;">¡Consulta recibida!</p>' +
+            '<p style="margin:6px 0 0;font-size:12px;color:#9E98BA;">' + firstName + ', te respondemos a la brevedad al contacto que nos indicaste.</p>' +
+          '</div>';
+        messages.scrollTop = messages.scrollHeight;
+      })
+      .catch(function() {
+        btn.textContent = 'Error — intentá de nuevo';
+        btn.disabled = false;
+      });
+    });
+  }
+
+  // ── Typing indicator ───────────────────────────────────────
   function showTyping() {
     var wrap = document.createElement('div');
     wrap.id = 'chat-typing';
@@ -174,6 +261,7 @@
     if (t) t.remove();
   }
 
+  // ── User sends message while offline ──────────────────────
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var text = input.value.trim();
@@ -183,9 +271,14 @@
     showTyping();
     setTimeout(function () {
       removeTyping();
-      addMsg(OFFLINE[replyIdx % OFFLINE.length], 'bot', true);
-      replyIdx++;
-    }, 1000 + Math.random() * 600);
+      if (offlineFormSubmitted) {
+        addMsg(submittedName + ', ya recibimos tu consulta. Te responderemos a la brevedad.', 'bot', true);
+      } else {
+        addMsg('⚠️ <strong style="color:#F0EDF8;">El asistente no está disponible en este momento.</strong> Dejá tu consulta y te respondemos a la brevedad.', 'bot', true);
+        showOfflineForm(text);
+      }
+      messages.scrollTop = messages.scrollHeight;
+    }, 900);
   });
 })();
 </script>
@@ -237,13 +330,30 @@
     right: 24px;
     z-index: 199;
     width: min(370px, calc(100vw - 32px));
-    height: min(500px, calc(100dvh - 160px));
+    height: min(520px, calc(100dvh - 160px));
     background: var(--bg-card);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 20px;
     box-shadow: 0 16px 48px rgba(0,0,0,0.6);
     flex-direction: column;
     overflow: hidden;
+    transform-origin: bottom right;
+  }
+
+  .chat-win--open {
+    animation: chatIn 0.28s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+  }
+  .chat-win--closing {
+    animation: chatOut 0.18s ease-in forwards;
+  }
+
+  @keyframes chatIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.93); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+  }
+  @keyframes chatOut {
+    from { opacity: 1; transform: translateY(0)    scale(1); }
+    to   { opacity: 0; transform: translateY(20px) scale(0.93); }
   }
 
   .chat-header {
@@ -322,7 +432,6 @@
   }
   .chat-send-btn:hover { transform: scale(1.08); }
 
-  /* Typing dots */
   .chat-dot {
     display: inline-block;
     width: 7px; height: 7px; border-radius: 50%;
